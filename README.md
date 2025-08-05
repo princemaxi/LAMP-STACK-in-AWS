@@ -140,7 +140,7 @@ chmod 400 your-key.pem
 ssh -i your-key.pem ubuntu@<your-ec2-public-ip>
 ```
 
-![alt text](image-8.png)
+![alt text](images/ssh1.png)
 
 ## ✅ Step 3: Install Apache2
 
@@ -150,9 +150,9 @@ sudo apt install apache2 -y
 sudo systemctl status apache2
 ```
 
-![alt text](image-9.png)
-![alt text](image-10.png)
-![alt text](image-11.png)
+![alt text](images/ssh2.png)
+![alt text](images/ap1.png)
+![alt text](images/ap2.png)
 
 Test Apache:
 
@@ -160,7 +160,7 @@ Test Apache:
 curl http://localhost
 ```
 
-![alt text](image-12.png)
+![alt text](images/ap3.png)
 
 Visit in browser:
 
@@ -168,7 +168,7 @@ Visit in browser:
 http://<your-ec2-ip>
 ```
 
-![alt text](image-13.png)
+![alt text](images/ap4.png)
 
 ## ✅ Step 4: Install MySQL access the MySQL interface
 
@@ -176,8 +176,8 @@ http://<your-ec2-ip>
 sudo apt install mysql-server -y
 sudo mysql
 ```
-![alt text](image-14.png)
-![alt text](image-15.png)
+![alt text](images/sql.png)
+![alt text](images/sql2.png)
 
 Secure the installation and exit:
 
@@ -186,7 +186,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'StrongPa
 exit
 ```
 
-![alt text](image-16.png)
+![alt text](images/sql3.png)
 
 Run the security script: This will prompt you with a series of questions to remove test databases, disable remote root login, and reload privilege tables to which you should reply yes for all questions.
 
@@ -194,8 +194,9 @@ Run the security script: This will prompt you with a series of questions to remo
 sudo mysql_secure_installation
 ```
 
-![alt text](image-17.png)
-![alt text](image-18.png)
+![alt text](images/sql4.png)
+![alt text](images/sql5.png)
+![alt text](images/sql6.png)
 
 Log back in: You can now log into MySQL using, type your password when prompted.
 
@@ -208,14 +209,14 @@ To exit MySQL:
 exit
 ```
 
-![alt text](image-19.png)
+![alt text](images/sql7.png)
 
 ## ✅ Step 5: Install PHP
 
 ```bash
 sudo apt install php libapache2-mod-php php-mysql -y
 ```
-![alt text](image-20.png)
+![alt text](images/php.png)
 
 Verify PHP Installation:
 This should return the PHP version information, confirming that PHP is installed.
@@ -223,7 +224,7 @@ This should return the PHP version information, confirming that PHP is installed
 php -v
 ```
 
-![alt text](image-21.png)
+![alt text](images/php2.png)
 
 ## ✅ Step 6: Configure Virtual Hosts: Next. 
 
@@ -234,7 +235,7 @@ sudo mkdir /var/www/projectlamp
 sudo chown -R $USER:$USER /var/www/projectlamp
 ```
 
-![alt text](image-22.png)
+![alt text](images/vh1.png)
 
 Create a new virtual host config:
 
@@ -242,7 +243,7 @@ Create a new virtual host config:
 sudo nano /etc/apache2/sites-available/projectlamp.conf
 ```
 
-![alt text](image-23.png)
+![alt text](images/vh2.png)
 
 Paste the following:
 
@@ -257,7 +258,7 @@ Paste the following:
 
 Save and exit the  editor
 
-![alt text](image-24.png)
+![alt text](images/vh.png)
 
 Enable the new site, test the configuration and then reload Apache:
 
@@ -268,8 +269,8 @@ sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
 
-![alt text](image-25.png)
-![alt text](image-26.png)
+![alt text](images/vh4.png)
+![alt text](images/vh5.png)
 
 ### ✅ Step 7: Navigate to the project directory and create webpages(basic HTML file):
 
@@ -286,12 +287,12 @@ Paste:
     <title>Hello from LAMP</title>
   </head>
   <body>
-    <h1>Apache2 Web Server Running on EC2!</h1>
+    <h1>Hello lamp from hostname</h1>
   </body>
 </html>
 ```
 
-![alt text](image-27.png)
+![alt text](images/vh6.png)
 
 Save and exit. You can now view this page using your EC2 public IP:
 
@@ -299,7 +300,7 @@ Save and exit. You can now view this page using your EC2 public IP:
 http://<your-ec2-public-ip>
 ```
 
-![alt text](image-28.png)
+![alt text](images/vh7.png)
 
 Make PHP load before HTML: Apache usually serves index.html by default. To give priority to index.php, modify the configuration file.
 
@@ -307,7 +308,7 @@ Make PHP load before HTML: Apache usually serves index.html by default. To give 
 sudo nano /etc/apache2/mods-enabled/dir.conf
 ```
 
-![alt text](image-29.png)
+![alt text](images/ep1.png)
 
 Edit:
 
@@ -316,6 +317,8 @@ DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 
 ```
 
+![alt text](images/ep.png)
+
 ### ➕ Add PHP Support: 
 Create a PHP page:
 
@@ -323,7 +326,7 @@ Create a PHP page:
 nano /var/www/projectlamp/index.php
 ```
 
-![alt text](image-30.png)
+![alt text](images/ep3.png)
 
 Paste:
 
@@ -333,7 +336,7 @@ phpinfo();
 ?>
 ```
 
-![alt text](image-31.png)
+![alt text](images/ep2.png)
 
 Save and exit.
 
@@ -345,15 +348,15 @@ sudo systemctl reload apache2
 
 Load your EC2 IP again and you should see a PHP configuration page.
 
-![alt text](image-32.png)
+![alt text](images/ep4.png)
 
 To remove the PHP info page for security reasons after verification:
 
 ```bash
 sudo rm /var/www/projectlamp/index.php
 ```
-![alt text](image-33.png)
-![alt text](image-34.png)
+![alt text](images/ep5.png)
+![alt text](images/ep6.png)
 
 ## 🛠️ Troubleshooting
 
@@ -361,7 +364,7 @@ sudo rm /var/www/projectlamp/index.php
 | ------------------------------- | --------------------------------------------------- |
 | `Permission denied (publickey)` | Check `chmod 400 your-key.pem`                      |
 | Apache not running              | `sudo systemctl restart apache2`                    |
-| `403 Forbidden` error           | Ensure proper permissions in `/var/www/projectlamp` |
+| `403 Forbidden` error           | Ensure proper permissions in `/var/www/projectlamp` and ensure inbound rule for port 22 and 80 are open |
 | MySQL Access Denied             | Reset root password via `ALTER USER` command        |
 | PHP not rendering               | Ensure `index.php` exists and Apache is restarted   |
 
