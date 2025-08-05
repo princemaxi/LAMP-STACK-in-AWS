@@ -355,7 +355,11 @@ To remove the PHP info page for security reasons after verification:
 ```bash
 sudo rm /var/www/projectlamp/index.php
 ```
+
 ![alt text](images/ep5.png)
+
+reload:
+
 ![alt text](images/ep6.png)
 
 ## 🛠️ Troubleshooting
