@@ -111,23 +111,23 @@ Make sure the following are installed and configured:
 
 1. Log in to [AWS Console](https://console.aws.amazon.com/)
 2. Navigate to **EC2 > Launch Instance**
-![alt text](image.png)
+![alt text](images/ec2a.png)
 3. Choose AMI: `Ubuntu Server 24.04 LTS`
-![alt text](image-1.png)
+![alt text](images/ec2b.png)
 4. Instance type: `t2.micro` (Free Tier)
 5. Create a new key pair and download the `.pem` file
-![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](images/ec2c.png)
+![alt text](images/ec2d.png)
 6. Configure Security group and add inbound rules:
    - SSH (port 22)
    - HTTP (port 80)
-   ![alt text](image-4.png)
+   ![alt text](images/ec2e.png)
 7. Launch Your Instance: Click Launch Instance.
 8. Click the instance ID to enter the ec2 
-![alt text](image-5.png) 
-![alt text](image-6.png) 
+![alt text](images/ec2f.png) 
+![alt text](images/ec2g.png) 
 9. (Optional) Allocate and associate an Elastic IP to your instance
-![alt text](image-7.png)
+![alt text](images/ec2h.png)
 
 ---
 
